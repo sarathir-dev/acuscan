@@ -1,0 +1,134 @@
+/* Reset and base setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #111;
+  color: #eee;
+  height: 100vh;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: rgba(17, 17, 17, 0.5); /* translucent dark */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: bold;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* Button */
+.book-btn {
+  padding: 0.5rem 1.2rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.book-btn:hover {
+  background-color: #ddd;
+}
+
+/* Hamburger Icon */
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Main section */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px);
+}
+main h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: right 0.3s ease;
+  z-index: 999; /* Increased z-index to appear above everything */
+  padding: 2rem;
+}
+.mobile-nav.active {
+  right: 0;
+}
+.mobile-nav .close-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+  z-index: 1001; /* ensure it appears above */
+}
+.mobile-nav a {
+  font-size: 1.5rem;
+  color: #eee;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .book-btn {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+  }
+}
