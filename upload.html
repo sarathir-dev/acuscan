@@ -3,124 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload & Analyze - OrganInsight</title>
+    <title>Chat & Analyze - OrganInsight</title>
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-      .upload-container {
+      .chat-container {
         max-width: 800px;
-        margin: 8rem auto 4rem;
-        padding: 2rem;
+        margin: 8rem auto 2rem;
         background: var(--white);
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* To contain rounded corners of messages */
       }
 
-      .upload-area {
-        border: 2px dashed var(--primary-blue);
-        border-radius: 8px;
-        padding: 3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .upload-area:hover {
+      .chat-header {
         background-color: var(--light-blue);
-      }
-
-      .upload-area i {
-        font-size: 3rem;
-        color: var(--primary-blue);
-        margin-bottom: 1rem;
-      }
-
-      .analysis-options {
-        margin-top: 2rem;
-      }
-
-      .option-group {
-        margin-bottom: 1.5rem;
-      }
-
-      .option-group h3 {
-        margin-bottom: 1rem;
-        color: var(--dark-gray);
-      }
-
-      .checkbox-group {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-      }
-
-      .checkbox-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .checkbox-item input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-      }
-
-      .submit-button {
-        width: 100%;
         padding: 1rem;
+        text-align: center;
+        color: var(--primary-blue);
+        font-weight: bold;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .chat-messages {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow-y: auto; /* Enable scrolling for long chats */
+        max-height: 400px; /* Adjust as needed */
+      }
+
+      .message {
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        clear: both; /* Prevent floating issues */
+      }
+
+      .user-message {
         background-color: var(--primary-blue);
         color: var(--white);
+        align-self: flex-end; /* Align user messages to the right */
+      }
+
+      .bot-message {
+        background-color: var(--light-gray);
+        color: var(--dark-gray);
+        align-self: flex-start; /* Align bot messages to the left */
+      }
+
+      .chat-input-area {
+        display: flex;
+        padding: 1rem;
+        border-top: 1px solid var(--light-gray);
+      }
+
+      .chat-input {
+        flex-grow: 1;
+        padding: 0.8rem;
+        border: 1px solid var(--text-gray);
+        border-radius: 5px;
+        margin-right: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .send-button {
+        background-color: var(--accent-teal);
+        color: var(--white);
         border: none;
-        border-radius: 4px;
-        font-size: 1.1rem;
-        font-weight: 600;
+        border-radius: 5px;
+        padding: 0.8rem 1.2rem;
         cursor: pointer;
+        font-weight: bold;
         transition: background-color 0.3s ease;
       }
 
-      .submit-button:hover {
-        background-color: var(--secondary-blue);
-      }
-
-      .file-list {
-        margin-top: 2rem;
-      }
-
-      .file-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background-color: var(--light-gray);
-        border-radius: 4px;
-        margin-bottom: 0.5rem;
-      }
-
-      .file-info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .file-actions {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .file-actions button {
-        background: none;
-        border: none;
-        color: var(--text-gray);
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .file-actions button:hover {
-        color: var(--primary-blue);
+      .send-button:hover {
+        background-color: #2bbbad; /* Slightly darker teal */
       }
     </style>
   </head>
@@ -132,7 +94,7 @@
         </div>
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="upload.html" class="active">Upload</a></li>
+          <li><a href="upload.html" class="active">Chat & Analyze</a></li>
           <li><a href="results.html">Results</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="learn.html">Learn</a></li>
@@ -146,73 +108,19 @@
     </header>
 
     <main>
-      <div class="upload-container">
-        <h2>Upload Medical Images</h2>
-        <p class="subtitle">
-          Upload your medical imaging data for AI-powered analysis
-        </p>
-
-        <div class="upload-area" id="dropZone">
-          <i class="fas fa-cloud-upload-alt"></i>
-          <h3>Drag & Drop your files here</h3>
-          <p>or</p>
-          <button class="cta-button">Browse Files</button>
-          <input type="file" id="fileInput" multiple style="display: none" />
+      <div class="chat-container">
+        <div class="chat-header">
+          <h3>Chat with OrganInsight AI</h3>
         </div>
-
-        <div class="file-list" id="fileList">
-          <!-- File items will be added here dynamically -->
-        </div>
-
-        <div class="analysis-options">
-          <h3>Analysis Options</h3>
-          <div class="option-group">
-            <h4>Image Type</h4>
-            <div class="checkbox-group">
-              <label class="checkbox-item">
-                <input type="checkbox" name="imageType" value="CT" />
-                CT Scan
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="imageType" value="MRI" />
-                MRI
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="imageType" value="X-Ray" />
-                X-Ray
-              </label>
-            </div>
-          </div>
-
-          <div class="option-group">
-            <h4>Analysis Type</h4>
-            <div class="checkbox-group">
-              <label class="checkbox-item">
-                <input type="checkbox" name="analysisType" value="3D" />
-                3D Reconstruction
-              </label>
-              <label class="checkbox-item">
-                <input
-                  type="checkbox"
-                  name="analysisType"
-                  value="segmentation"
-                />
-                Organ Segmentation
-              </label>
-              <label class="checkbox-item">
-                <input
-                  type="checkbox"
-                  name="analysisType"
-                  value="measurement"
-                />
-                Measurement Analysis
-              </label>
-            </div>
-          </div>
-
-          <button class="submit-button" id="analyzeButton">
-            Start Analysis
-          </button>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+          <input
+            type="text"
+            id="messageInput"
+            class="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="sendMessage" class="send-button">Send</button>
         </div>
       </div>
     </main>
@@ -229,7 +137,7 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="upload.html">Chat & Analyze</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="learn.html">Learn More</a></li>
           </ul>
@@ -245,70 +153,116 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
     <script>
-      // File upload handling
-      const dropZone = document.getElementById("dropZone");
-      const fileInput = document.getElementById("fileInput");
-      const fileList = document.getElementById("fileList");
-      const analyzeButton = document.getElementById("analyzeButton");
+      const chatMessages = document.getElementById("chatMessages");
+      const messageInput = document.getElementById("messageInput");
+      const sendMessageButton = document.getElementById("sendMessage");
+      const CHAT_STORAGE_KEY = "organinsight_chat_history";
 
-      // Handle drag and drop
-      dropZone.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        dropZone.style.backgroundColor = "var(--light-blue)";
-      });
-
-      dropZone.addEventListener("dragleave", () => {
-        dropZone.style.backgroundColor = "transparent";
-      });
-
-      dropZone.addEventListener("drop", (e) => {
-        e.preventDefault();
-        dropZone.style.backgroundColor = "transparent";
-        handleFiles(e.dataTransfer.files);
-      });
-
-      // Handle file input
-      dropZone.addEventListener("click", () => {
-        fileInput.click();
-      });
-
-      fileInput.addEventListener("change", (e) => {
-        handleFiles(e.target.files);
-      });
-
-      function handleFiles(files) {
-        for (let file of files) {
-          addFileToList(file);
+      // Load chat history from local storage
+      function loadChatHistory() {
+        const storedChat = localStorage.getItem(CHAT_STORAGE_KEY);
+        if (storedChat) {
+          const messages = JSON.parse(storedChat);
+          messages.forEach((msg) => {
+            displayMessage(msg.text, msg.sender);
+          });
         }
       }
 
-      function addFileToList(file) {
-        const fileItem = document.createElement("div");
-        fileItem.className = "file-item";
-        fileItem.innerHTML = `
-                <div class="file-info">
-                    <i class="fas fa-file-medical"></i>
-                    <span>${file.name}</span>
-                </div>
-                <div class="file-actions">
-                    <button onclick="removeFile(this)"><i class="fas fa-times"></i></button>
-                </div>
-            `;
-        fileList.appendChild(fileItem);
+      // Save chat history to local storage
+      function saveChatMessage(text, sender) {
+        const storedChat = localStorage.getItem(CHAT_STORAGE_KEY);
+        let messages = storedChat ? JSON.parse(storedChat) : [];
+        messages.push({ text: text, sender: sender });
+        localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
       }
 
-      function removeFile(button) {
-        button.closest(".file-item").remove();
+      // Display a message in the chat
+      function displayMessage(text, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        messageDiv.classList.add(`${sender}-message`);
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the latest message
       }
 
-      // Handle analysis submission
-      analyzeButton.addEventListener("click", () => {
-        // Here you would typically send the files and options to your backend
-        // For now, we'll just redirect to the results page
-        window.location.href = "results.html";
+      // Handle sending a new message
+      async function sendMessage() {
+        const messageText = messageInput.value.trim();
+        if (messageText) {
+          displayMessage(messageText, "user");
+          saveChatMessage(messageText, "user");
+          messageInput.value = "";
+
+          // Simulate bot response (replace with actual Gemini API call)
+          const botResponse = await getGeminiResponse(messageText);
+          displayMessage(botResponse, "bot");
+          saveChatMessage(botResponse, "bot");
+        }
+      }
+
+      // Placeholder for Gemini API interaction
+      async function getGeminiResponse(userMessage) {
+        // **IMPORTANT:** Replace 'YOUR_GEMINI_API_KEY' with your actual API key.
+        const apiKey = "YOUR_GEMINI_API_KEY";
+        const apiUrl =
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" +
+          apiKey;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [{ text: userMessage }],
+                },
+              ],
+            }),
+          });
+
+          if (!response.ok) {
+            console.error(
+              "Gemini API Error:",
+              response.status,
+              response.statusText
+            );
+            return "Sorry, I couldn't get a response right now.";
+          }
+
+          const data = await response.json();
+          if (
+            data.candidates &&
+            data.candidates.length > 0 &&
+            data.candidates[0].content &&
+            data.candidates[0].content.parts &&
+            data.candidates[0].content.parts.length > 0
+          ) {
+            return data.candidates[0].content.parts[0].text;
+          } else {
+            return "Sorry, I didn't understand that.";
+          }
+        } catch (error) {
+          console.error("Error calling Gemini API:", error);
+          return "Sorry, there was an error processing your request.";
+        }
+      }
+
+      // Event listeners
+      sendMessageButton.addEventListener("click", sendMessage);
+      messageInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
       });
+
+      // Load initial chat history
+      loadChatHistory();
     </script>
   </body>
 </html>
