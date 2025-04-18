@@ -3,9 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload</title>
+    <title>Upload & Analyze - OrganInsight</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-    <h1>Upload</h1>
+    <header>
+      <div class="container">
+        <h1>OrganInsight</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="upload.html" class="active">Upload & Analyze</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn-more.html">Learn More</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container upload-page">
+      <section class="upload-section">
+        <h2>Upload Your 3D Medical Image</h2>
+        <p class="instructions">
+          Please upload a 3D medical image file (this is a frontend
+          demonstration; no actual analysis will occur). Supported formats:
+          (placeholder - e.g., .mha, .nii.gz).
+        </p>
+
+        <div class="upload-area">
+          <label for="file-upload" class="file-upload-label">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span
+              >Drag & Drop files here or
+              <button type="button" class="browse-button">Browse</button></span
+            >
+            <input id="file-upload" type="file" style="display: none" />
+          </label>
+          <div id="file-preview"></div>
+        </div>
+
+        <button id="analyze-button" class="button primary" disabled>
+          Analyze <i class="fas fa-flask"></i>
+        </button>
+
+        <p class="disclaimer">
+          <strong>Note:</strong> The analysis performed here is a frontend
+          simulation for demonstration purposes only. No actual AI processing is
+          taking place.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 OrganInsight. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const fileUpload = document.getElementById("file-upload");
+        const filePreview = document.getElementById("file-preview");
+        const analyzeButton = document.getElementById("analyze-button");
+        const fileUploadLabel = document.querySelector(".file-upload-label");
+
+        fileUpload.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            filePreview.textContent = `Selected file: ${file.name}`;
+            analyzeButton.disabled = false;
+          } else {
+            filePreview.textContent = "";
+            analyzeButton.disabled = true;
+          }
+        });
+
+        fileUploadLabel.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          fileUploadLabel.classList.add("dragover");
+        });
+
+        fileUploadLabel.addEventListener("dragleave", () => {
+          fileUploadLabel.classList.remove("dragover");
+        });
+
+        fileUploadLabel.addEventListener("drop", (e) => {
+          e.preventDefault();
+          fileUploadLabel.classList.remove("dragover");
+          fileUpload.files = e.dataTransfer.files;
+          const file = fileUpload.files[0];
+          if (file) {
+            filePreview.textContent = `Selected file: ${file.name}`;
+            analyzeButton.disabled = false;
+          } else {
+            filePreview.textContent = "";
+            analyzeButton.disabled = true;
+          }
+        });
+
+        analyzeButton.addEventListener("click", () => {
+          // Simulate analysis and redirect to results page
+          // In a real application, you would send the file to a backend here.
+          window.location.href = "results.html";
+        });
+      });
+    </script>
   </body>
 </html>
