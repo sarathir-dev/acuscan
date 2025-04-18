@@ -4,69 +4,280 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analysis Results - OrganInsight</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <style>
+      .results-container {
+        max-width: 1200px;
+        margin: 8rem auto 4rem;
+        padding: 2rem;
+      }
+
+      .results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .results-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .action-button {
+        padding: 0.5rem 1rem;
+        background-color: var(--white);
+        border: 1px solid var(--primary-blue);
+        color: var(--primary-blue);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .action-button:hover {
+        background-color: var(--primary-blue);
+        color: var(--white);
+      }
+
+      .results-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .visualization-section {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+      }
+
+      .visualization-container {
+        width: 100%;
+        height: 500px;
+        background-color: var(--light-gray);
+        border-radius: 4px;
+        margin-top: 1rem;
+        position: relative;
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .control-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--white);
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .analysis-details {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+      }
+
+      .detail-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .detail-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .detail-item h3 {
+        color: var(--dark-gray);
+        margin-bottom: 0.5rem;
+      }
+
+      .measurement {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .measurement:last-child {
+        margin-bottom: 0;
+      }
+
+      .download-section {
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .download-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background-color: var(--primary-blue);
+        color: var(--white);
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .download-button:hover {
+        background-color: var(--secondary-blue);
+      }
+    </style>
   </head>
   <body>
     <header>
-      <div class="container">
-        <h1>OrganInsight</h1>
-        <nav>
-          <ul>
-            <li><a href="index.html">Homepage</a></li>
-            <li><a href="upload.html">Upload & Analyze</a></li>
-            <li><a href="results.html" class="active">Results</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="learn-more.html">Learn More</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav>
+        <div class="logo">
+          <h1>OrganInsight</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="upload.html">Upload & Analyze</a></li>
+          <li><a href="results.html" class="active">Results</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="learn.html">Learn More</a></li>
+        </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
     </header>
 
-    <main class="container results-page">
-      <section class="results-section">
-        <h2>Analysis Results</h2>
-
-        <div class="image-display">
-          <img
-            src="images/3d-scan-placeholder.png"
-            alt="Simulated 3D Medical Image"
-            placeholder="A generic 3D medical scan image."
-          />
-        </div>
-
-        <div class="analysis-output">
-          <div class="result-item">
-            <h3>Classification Result:</h3>
-            <p class="classification">Possible Liver Tumor Detected</p>
-          </div>
-          <div class="result-item">
-            <h3>Plain Language Description:</h3>
-            <p class="description">
-              Based on the simulated analysis of the uploaded 3D medical image,
-              the AI has identified a potential anomaly indicative of a liver
-              tumor. Further review by a medical professional is recommended for
-              confirmation.
-            </p>
+    <main>
+      <div class="results-container">
+        <div class="results-header">
+          <h2>Analysis Results</h2>
+          <div class="results-actions">
+            <button class="action-button">
+              <i class="fas fa-print"></i> Print
+            </button>
+            <button class="action-button">
+              <i class="fas fa-share-alt"></i> Share
+            </button>
           </div>
         </div>
 
-        <button
-          class="button secondary"
-          onclick="window.location.href='upload.html'"
-        >
-          Analyze Another Image <i class="fas fa-redo"></i>
-        </button>
-      </section>
+        <div class="results-grid">
+          <div class="visualization-section">
+            <h3>3D Visualization</h3>
+            <div class="visualization-container">
+              <!-- 3D visualization will be rendered here -->
+              <div class="controls">
+                <button class="control-button" title="Rotate">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="control-button" title="Zoom">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="control-button" title="Pan">
+                  <i class="fas fa-arrows-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="analysis-details">
+            <div class="detail-item">
+              <h3>Patient Information</h3>
+              <p>ID: P123456</p>
+              <p>Age: 45</p>
+              <p>Gender: Male</p>
+            </div>
+
+            <div class="detail-item">
+              <h3>Scan Details</h3>
+              <p>Type: CT Scan</p>
+              <p>Date: 2024-03-15</p>
+              <p>Resolution: 512x512</p>
+            </div>
+
+            <div class="detail-item">
+              <h3>Measurements</h3>
+              <div class="measurement">
+                <span>Organ Volume</span>
+                <span>1250 cm³</span>
+              </div>
+              <div class="measurement">
+                <span>Density</span>
+                <span>1.05 g/cm³</span>
+              </div>
+              <div class="measurement">
+                <span>Surface Area</span>
+                <span>850 cm²</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <h3>Analysis Summary</h3>
+              <p>
+                The analysis shows normal organ morphology with no significant
+                abnormalities detected. The measurements are within the expected
+                range for the patient's age and gender.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="download-section">
+          <button class="download-button">
+            <i class="fas fa-download"></i>
+            Download Full Report
+          </button>
+        </div>
+      </div>
     </main>
 
     <footer>
-      <div class="container">
-        <p>&copy; 2025 OrganInsight. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OrganInsight</h3>
+          <p>
+            AI-powered medical image analysis for better healthcare outcomes
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn.html">Learn More</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@organinsight.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 OrganInsight. All rights reserved.</p>
       </div>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>

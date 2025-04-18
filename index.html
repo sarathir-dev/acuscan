@@ -4,100 +4,121 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OrganInsight - AI-Powered 3D Medical Image Analysis</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
   <body>
     <header>
-      <div class="container">
-        <h1>OrganInsight</h1>
-        <nav>
-          <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="upload.html">Upload & Analyze</a></li>
-            <li><a href="results.html">Results</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="learn-more.html">Learn More</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav>
+        <div class="logo">
+          <h1>OrganInsight</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="upload.html">Upload</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
     </header>
 
-    <main class="container homepage">
+    <main>
       <section class="hero">
         <div class="hero-content">
-          <h1>
-            Unlock Deeper Insights with AI-Powered 3D Medical Image Analysis
-          </h1>
-          <p class="subheadline">
-            Visualize, Analyze, and Understand Complex Medical Data with
-            Unprecedented Clarity.
+          <h1>Revolutionizing Medical Image Analysis with AI</h1>
+          <p>
+            Advanced 3D visualization and analysis for precise medical
+            diagnostics
           </p>
-          <a href="upload.html" class="button primary"
-            >Get Started <i class="fas fa-upload"></i
-          ></a>
-        </div>
-        <div class="hero-image">
-          <img
-            src="images/homepage-hero.png"
-            alt="3D Medical Image Visualization"
-            placeholder="A stylized 3D rendering of internal organs with data overlays."
-          />
+          <a href="upload.html" class="cta-button">Get Started</a>
         </div>
       </section>
 
       <section class="features">
         <h2>Key Features</h2>
-        <div class="feature-list">
-          <div class="feature-item">
+        <div class="feature-grid">
+          <div class="feature-card">
             <i class="fas fa-brain"></i>
-            <h3>AI-Powered Classification</h3>
+            <h3>AI-Powered Analysis</h3>
             <p>
-              Leverage advanced AI algorithms for intelligent image
-              classification.
+              State-of-the-art machine learning algorithms for accurate medical
+              image interpretation
             </p>
           </div>
-          <div class="feature-item">
+          <div class="feature-card">
             <i class="fas fa-cube"></i>
-            <h3>3D Image Visualization</h3>
-            <p>Explore medical data in an intuitive three-dimensional space.</p>
-          </div>
-          <div class="feature-item">
-            <i class="fas fa-file-alt"></i>
-            <h3>Plain Language Explanations</h3>
+            <h3>3D Visualization</h3>
             <p>
-              Understand complex analyses with clear and concise descriptions.
+              Interactive 3D models for comprehensive anatomical understanding
             </p>
           </div>
-          <div class="feature-item">
-            <i class="fas fa-desktop"></i>
-            <h3>User-Friendly Interface</h3>
-            <p>Experience a seamless and intuitive analysis workflow.</p>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Detailed Reports</h3>
+            <p>Comprehensive analysis reports with actionable insights</p>
           </div>
         </div>
       </section>
 
-      <section class="overview">
-        <h2>About OrganInsight</h2>
-        <p>
-          OrganInsight is a cutting-edge web application designed to
-          revolutionize the way medical professionals interact with 3D medical
-          imaging. By integrating the power of artificial intelligence,
-          OrganInsight provides advanced analysis and visualization
-          capabilities, empowering users to gain deeper insights from complex
-          medical data. Our intuitive interface and clear presentation of
-          results aim to enhance diagnostic accuracy and improve patient care.
-        </p>
+      <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Upload Medical Images</h3>
+            <p>Securely upload your medical imaging data</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>AI Analysis</h3>
+            <p>Our AI processes and analyzes the images</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Get Results</h3>
+            <p>Receive detailed analysis and 3D visualizations</p>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
-      <div class="container">
-        <p>&copy; 2025 OrganInsight. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OrganInsight</h3>
+          <p>
+            AI-powered medical image analysis for better healthcare outcomes
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn.html">Learn More</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@organinsight.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 OrganInsight. All rights reserved.</p>
       </div>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn More - OrganInsight</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      .learn-container {
+        max-width: 1200px;
+        margin: 8rem auto 4rem;
+        padding: 2rem;
+      }
+
+      .learn-section {
+        margin-bottom: 4rem;
+      }
+
+      .learn-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .topic-card {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .topic-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .topic-card i {
+        font-size: 2.5rem;
+        color: var(--primary-blue);
+        margin-bottom: 1rem;
+      }
+
+      .topic-card h3 {
+        color: var(--dark-gray);
+        margin-bottom: 1rem;
+      }
+
+      .topic-card p {
+        color: var(--text-gray);
+        margin-bottom: 1.5rem;
+      }
+
+      .read-more {
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .read-more:hover {
+        text-decoration: underline;
+      }
+
+      .faq-section {
+        margin-top: 2rem;
+      }
+
+      .faq-item {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        background-color: var(--light-gray);
+      }
+
+      .faq-question h3 {
+        color: var(--dark-gray);
+        margin: 0;
+      }
+
+      .faq-answer {
+        padding: 1.5rem;
+        display: none;
+      }
+
+      .faq-answer p {
+        color: var(--text-gray);
+        margin: 0;
+      }
+
+      .resources-section {
+        margin-top: 2rem;
+      }
+
+      .resource-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .resource-item {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .resource-item i {
+        color: var(--primary-blue);
+        font-size: 1.5rem;
+      }
+
+      .resource-info h3 {
+        color: var(--dark-gray);
+        margin-bottom: 0.5rem;
+      }
+
+      .resource-info p {
+        color: var(--text-gray);
+        margin: 0;
+      }
+
+      .resource-link {
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .resource-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h1>OrganInsight</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="upload.html">Upload & Analyze</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="learn.html" class="active">Learn More</a></li>
+        </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="learn-container">
+        <div class="learn-section">
+          <h2>Understanding Medical Imaging</h2>
+          <div class="topic-grid">
+            <div class="topic-card">
+              <i class="fas fa-x-ray"></i>
+              <h3>CT Scans</h3>
+              <p>
+                Learn about computed tomography and how it creates detailed
+                cross-sectional images of the body.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="topic-card">
+              <i class="fas fa-magnet"></i>
+              <h3>MRI</h3>
+              <p>
+                Discover how magnetic resonance imaging provides detailed images
+                of organs and tissues.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="topic-card">
+              <i class="fas fa-wave-square"></i>
+              <h3>Ultrasound</h3>
+              <p>
+                Understand how ultrasound imaging works and its applications in
+                medical diagnostics.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="learn-section">
+          <h2>AI in Medical Imaging</h2>
+          <div class="topic-grid">
+            <div class="topic-card">
+              <i class="fas fa-brain"></i>
+              <h3>Machine Learning</h3>
+              <p>
+                Explore how machine learning algorithms analyze medical images
+                for accurate diagnostics.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="topic-card">
+              <i class="fas fa-cube"></i>
+              <h3>3D Reconstruction</h3>
+              <p>
+                Learn about 3D visualization techniques and their importance in
+                medical analysis.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="topic-card">
+              <i class="fas fa-chart-line"></i>
+              <h3>Data Analysis</h3>
+              <p>
+                Understand how AI processes and analyzes medical imaging data
+                for insights.
+              </p>
+              <a href="#" class="read-more">
+                Read More
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="learn-section">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-section">
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>How accurate is AI-based medical image analysis?</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Our AI algorithms have been trained on extensive medical
+                  imaging datasets and validated by medical professionals. While
+                  AI provides valuable insights, it should be used as a tool to
+                  support, not replace, medical expertise.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>What types of medical images can be analyzed?</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Our platform supports various medical imaging modalities
+                  including CT scans, MRI, X-rays, and ultrasound images. Each
+                  type of image requires specific analysis techniques and
+                  algorithms.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>How is patient data protected?</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  We adhere to strict data protection regulations and implement
+                  advanced security measures. All data is encrypted, and we
+                  maintain compliance with HIPAA and other relevant healthcare
+                  privacy standards.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="learn-section">
+          <h2>Additional Resources</h2>
+          <div class="resources-section">
+            <ul class="resource-list">
+              <li class="resource-item">
+                <i class="fas fa-book"></i>
+                <div class="resource-info">
+                  <h3>Medical Imaging Basics</h3>
+                  <p>
+                    A comprehensive guide to understanding different medical
+                    imaging techniques
+                  </p>
+                  <a href="#" class="resource-link">Download PDF</a>
+                </div>
+              </li>
+              <li class="resource-item">
+                <i class="fas fa-video"></i>
+                <div class="resource-info">
+                  <h3>AI in Healthcare</h3>
+                  <p>
+                    Video series explaining the role of artificial intelligence
+                    in medical diagnostics
+                  </p>
+                  <a href="#" class="resource-link">Watch Videos</a>
+                </div>
+              </li>
+              <li class="resource-item">
+                <i class="fas fa-newspaper"></i>
+                <div class="resource-info">
+                  <h3>Research Papers</h3>
+                  <p>
+                    Collection of scientific papers on medical image analysis
+                    and AI
+                  </p>
+                  <a href="#" class="resource-link">View Papers</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OrganInsight</h3>
+          <p>
+            AI-powered medical image analysis for better healthcare outcomes
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn.html">Learn More</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@organinsight.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 OrganInsight. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // FAQ Accordion
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          const icon = question.querySelector("i");
+
+          if (answer.style.display === "block") {
+            answer.style.display = "none";
+            icon.classList.remove("fa-chevron-up");
+            icon.classList.add("fa-chevron-down");
+          } else {
+            answer.style.display = "block";
+            icon.classList.remove("fa-chevron-down");
+            icon.classList.add("fa-chevron-up");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
