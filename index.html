@@ -3,67 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Organ Insight</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>OrganInsight - AI-Powered 3D Medical Image Analysis</title>
+    <link rel="stylesheet" href="css/style.css" />
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <script src="script.js"></script>
-    <script src="navbar.js"></script>
   </head>
   <body>
-    <div id="navbar-container"></div>
-    <main>
-      <!-- Hero Section -->
+    <header>
+      <div class="container">
+        <h1>OrganInsight</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active">Homepage</a></li>
+            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn.html">Learn More</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container homepage">
       <section class="hero">
         <div class="hero-content">
-          <h2 class="hero-subtitle">Next-Gen Medical Imaging</h2>
-          <h1 class="hero-title">OrganInsight</h1>
-          <p class="hero-description">
-            Making 3D medical image analysis accessible and understandable using
-            artificial intelligence.
+          <h1>
+            Unlock Deeper Insights with AI-Powered 3D Medical Image Analysis
+          </h1>
+          <p class="subheadline">
+            Visualize, Analyze, and Understand Complex Medical Data with
+            Unprecedented Clarity.
           </p>
-          <div class="hero-buttons">
-            <button class="hero-btn demo-btn">Try Demo</button>
-            <button class="hero-btn learn-btn">Learn More</button>
+          <a href="upload.html" class="button primary"
+            >Get Started <i class="fas fa-upload"></i
+          ></a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="images/homepage-hero.png"
+            alt="3D Medical Image Visualization"
+            placeholder="A stylized 3D rendering of internal organs with data overlays."
+          />
+        </div>
+      </section>
+
+      <section class="features">
+        <h2>Key Features</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <i class="fas fa-brain"></i>
+            <h3>AI-Powered Classification</h3>
+            <p>
+              Leverage advanced AI algorithms for intelligent image
+              classification.
+            </p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-cube"></i>
+            <h3>3D Image Visualization</h3>
+            <p>Explore medical data in an intuitive three-dimensional space.</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-file-alt"></i>
+            <h3>Plain Language Explanations</h3>
+            <p>
+              Understand complex analyses with clear and concise descriptions.
+            </p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-desktop"></i>
+            <h3>User-Friendly Interface</h3>
+            <p>Experience a seamless and intuitive analysis workflow.</p>
           </div>
         </div>
       </section>
 
-      <!-- Features Section -->
-      <section class="features">
-        <div class="feature">
-          <div class="feature-icon">
-            <i class="bx bx-brain"></i>
-          </div>
-          <h3>AI-Powered Analysis</h3>
-          <p>
-            Advanced machine learning algorithms for accurate organ analysis
-          </p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">
-            <i class="bx bx-time"></i>
-          </div>
-          <h3>Real-time Processing</h3>
-          <p>Fast and efficient image processing capabilities</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">
-            <i class="bx bx-cube"></i>
-          </div>
-          <h3>3D Visualization</h3>
-          <p>Interactive 3D models for better understanding</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <h3>Secure & Private</h3>
-          <p>Enterprise-grade security for your medical data</p>
-        </div>
+      <section class="overview">
+        <h2>About OrganInsight</h2>
+        <p>
+          OrganInsight is a cutting-edge web application designed to
+          revolutionize the way medical professionals interact with 3D medical
+          imaging. By integrating the power of artificial intelligence,
+          OrganInsight provides advanced analysis and visualization
+          capabilities, empowering users to gain deeper insights from complex
+          medical data. Our intuitive interface and clear presentation of
+          results aim to enhance diagnostic accuracy and improve patient care.
+        </p>
       </section>
     </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 OrganInsight. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
