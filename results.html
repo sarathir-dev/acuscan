@@ -3,9 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Results</title>
+    <title>Analysis Results - OrganInsight</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-    <h1>Results</h1>
+    <header>
+      <div class="container">
+        <h1>OrganInsight</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="upload.html">Upload & Analyze</a></li>
+            <li><a href="results.html" class="active">Results</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="learn-more.html">Learn More</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container results-page">
+      <section class="results-section">
+        <h2>Analysis Results</h2>
+
+        <div class="image-display">
+          <img
+            src="images/3d-scan-placeholder.png"
+            alt="Simulated 3D Medical Image"
+            placeholder="A generic 3D medical scan image."
+          />
+        </div>
+
+        <div class="analysis-output">
+          <div class="result-item">
+            <h3>Classification Result:</h3>
+            <p class="classification">Possible Liver Tumor Detected</p>
+          </div>
+          <div class="result-item">
+            <h3>Plain Language Description:</h3>
+            <p class="description">
+              Based on the simulated analysis of the uploaded 3D medical image,
+              the AI has identified a potential anomaly indicative of a liver
+              tumor. Further review by a medical professional is recommended for
+              confirmation.
+            </p>
+          </div>
+        </div>
+
+        <button
+          class="button secondary"
+          onclick="window.location.href='upload.html'"
+        >
+          Analyze Another Image <i class="fas fa-redo"></i>
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 OrganInsight. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
