@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - AcuScan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+      .login-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .login-box {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      }
+
+      .login-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        color: #111827;
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      .login-logo svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .login-header h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.5rem;
+      }
+
+      .login-header p {
+        color: #6b7280;
+        font-size: 0.875rem;
+      }
+
+      .google-login {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        color: #111827;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-bottom: 1.5rem;
+      }
+
+      .google-login:hover {
+        background: #f9fafb;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin: 1.5rem 0;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .divider span {
+        padding: 0 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        color: #374151;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 0.875rem;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #000;
+      }
+
+      .forgot-password {
+        display: block;
+        text-align: right;
+        color: #000;
+        font-size: 0.875rem;
+        text-decoration: none;
+        margin: -0.5rem 0 1rem;
+      }
+
+      .login-button {
+        width: 100%;
+        padding: 0.75rem;
+        background: #111827;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .login-button:hover {
+        background: #1f2937;
+      }
+
+      .signup-prompt {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .signup-prompt a {
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .terms {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      .terms a {
+        color: #374151;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Sign in to your AcuScan account</p>
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" class="btn-primary">Sign In</button>
+        </form>
+        <p class="auth-footer">
+          Don't have an account? <a href="signup.html">Sign up</a>
+        </p>
+      </div>
+    </div>
+    <script type="module" src="auth.js"></script>
+  </body>
+</html>

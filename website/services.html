@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services - AcuScan</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="logo-icon"
+          >
+            <path d="M4 7v-1a2 2 0 0 1 2 -2h2" />
+            <path d="M4 17v1a2 2 0 0 0 2 2h2" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v1" />
+            <path d="M16 20h2a2 2 0 0 0 2 -2v-1" />
+            <path d="M5 12l14 0" />
+          </svg>
+          AcuScan.
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn-login">Log In</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu-overlay">
+      <div class="mobile-menu-header">
+        <a href="/" class="logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 7v-1a2 2 0 0 1 2 -2h2" />
+            <path d="M4 17v1a2 2 0 0 0 2 2h2" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v1" />
+            <path d="M16 20h2a2 2 0 0 0 2 -2v-1" />
+            <path d="M5 12l14 0" />
+          </svg>
+          AcuScan.
+        </a>
+        <button class="close-menu-btn" aria-label="Close Menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-menu-content">
+        <nav class="mobile-nav-links">
+          <a href="index.html">Home</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+        </nav>
+        <div class="mobile-nav-buttons">
+          <a href="login.html" class="btn-login">Log In</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero services-hero">
+      <div class="container">
+        <h1>Empowering Your Medical Image Analysis</h1>
+        <p class="subtitle">
+          AcuScan leverages advanced AI to interpret 2D medical scans with
+          unmatched simplicity and precision—bridging the gap between complex
+          medical data and clear human understanding.
+        </p>
+      </div>
+    </section>
+
+    <section class="services-grid">
+      <div class="container">
+        <div class="service-card large">
+          <div class="service-content">
+            <h2>Advanced 2D Organ Classification</h2>
+            <p>
+              Harnessing the OrganMNIST dataset, AcuScan's AI achieves
+              high-accuracy classification of various human organs in 2D scans.
+            </p>
+            <p class="caption">
+              Accurate classification powered by deep learning.
+            </p>
+          </div>
+          <div class="service-image">
+            <img
+              src="images/doctor-scan.jpg"
+              alt="Doctor analyzing medical scan"
+            />
+          </div>
+        </div>
+
+        <div class="service-card large">
+          <div class="service-image">
+            <img src="images/ai-analysis.jpg" alt="AI Analysis Pattern" />
+          </div>
+          <div class="service-content">
+            <h2>Intelligent Plain Language Reporting</h2>
+            <p>
+              With integrated ChatGPT API, AcuScan translates complex scan
+              results into easy-to-understand explanations for all users.
+            </p>
+            <p class="caption">
+              Bridging the communication gap with clear explanations.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-card large">
+          <div class="service-content">
+            <h2>Secure and Private Image Handling</h2>
+            <p>
+              We prioritize your privacy with encrypted storage, secure upload
+              pipelines, and compliance with healthcare data standards.
+            </p>
+            <p class="caption">
+              Your data is handled with utmost security and privacy.
+            </p>
+          </div>
+          <div class="service-image">
+            <img src="images/secure-server.jpg" alt="Secure Server Room" />
+          </div>
+        </div>
+
+        <div class="service-card large">
+          <div class="service-image">
+            <img src="images/integration.jpg" alt="Integration Diagram" />
+          </div>
+          <div class="service-content">
+            <h2>Customizable Integration Options</h2>
+            <p>
+              AcuScan provides flexible integration APIs, allowing seamless
+              embedding into your existing tools or research pipelines.
+            </p>
+            <p class="caption">
+              Flexible integration options for your existing systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container">
+        <h2>Who Benefits from AcuScan?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h3>For Healthcare Professionals</h3>
+            <p>
+              Enhances diagnostic accuracy, streamlines reporting, and improves
+              patient interaction.
+            </p>
+            <p class="caption">
+              Empowering healthcare professionals with AI-driven insights.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <h3>For Patients</h3>
+            <p>
+              Delivers clearer understanding of diagnoses and promotes active
+              participation in healthcare.
+            </p>
+            <p class="caption">
+              Enhancing patient understanding and engagement.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <h3>For Researchers/Educators</h3>
+            <p>
+              Provides a reliable platform for teaching and advancing medical
+              imaging research.
+            </p>
+            <p class="caption">
+              A valuable tool for medical research and education.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to experience AcuScan?</h2>
+        <p>
+          Try our interactive demo or get in touch for more details on how
+          AcuScan can benefit you.
+        </p>
+        <div class="cta-buttons">
+          <button
+            class="btn-primary"
+            onclick="window.location.href='login.html'"
+          >
+            Try Demo
+          </button>
+          <button
+            class="btn-secondary"
+            onclick="window.location.href='about.html'"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About AcuScan</h4>
+          <p>
+            AcuScan leverages AI to make 2D medical image analysis more
+            accessible and user-friendly.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Us</h4>
+          <p>Have questions? Reach out to us at<br />support@acuscan.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 AcuScan. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>
