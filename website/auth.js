@@ -1,9 +1,9 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-// const supabaseUrl = "https://eikcywmpzosuycutwifa.supabase.co";
-// const supabaseKey =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpa2N5d21wem9zdXljdXR3aWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0NzE5NzYsImV4cCI6MjA2MTA0Nzk3Nn0.NMl4NHnwRmUmr1axKWAWne7_4S-mEA6pC_Vq0hf6bGg";
-// const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = "https://eikcywmpzosuycutwifa.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpa2N5d21wem9zdXljdXR3aWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU0NzE5NzYsImV4cCI6MjA2MTA0Nzk3Nn0.NMl4NHnwRmUmr1axKWAWne7_4S-mEA6pC_Vq0hf6bGg";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function checkAuth() {
   const {
