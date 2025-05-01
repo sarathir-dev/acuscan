@@ -146,6 +146,11 @@ body {
 .hero-img {
   border-radius: 12px;
   margin-top: 3rem;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero h1 {
@@ -1627,6 +1632,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .hero-img {
+    width: 100%;
+  }
   .chat-layout {
     grid-template-columns: 1fr;
   }
