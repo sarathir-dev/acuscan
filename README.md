@@ -51,7 +51,7 @@ To run Acu-Scan locally, you will need to:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/sarathir-dev/acuscan.git
     cd Acu-Scan/website
     ```
 
