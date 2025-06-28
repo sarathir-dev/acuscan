@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="config.js"></script>
     <style>
       body {
         font-family: "Inter", sans-serif;
@@ -762,7 +763,7 @@
     </div>
 
     <script>
-      const GEMINI_API_KEY = "";
+      const GEMINI_API_KEY = CONFIG.GEMINI_API_KEY;
       const GEMINI_MODEL = "gemini-2.0-flash";
       const GEMINI_GENERATE_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
       const GEMINI_UPLOAD_ENDPOINT = `https://generativelanguage.googleapis.com/upload/v1beta/files?key=${GEMINI_API_KEY}`;

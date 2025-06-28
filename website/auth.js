@@ -1,8 +1,8 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 // Removed the secret key to prevent misuse
-const supabaseUrl = config.SUPABASE_URL;
-const supabaseKey = config.SUPABASE_KEY;
+const supabaseUrl = CONFIG.SUPABASE_URL;
+const supabaseKey = CONFIG.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Check if user is authenticated
