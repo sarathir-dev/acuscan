@@ -12,756 +12,251 @@
     />
     <script src="config.js"></script>
     <script src="chat.js"></script>
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background: #f9fafb;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-      }
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: #fff;
-        border-bottom: 1px solid #e5e7eb;
-        z-index: 100;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 2rem;
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-        font-weight: 600;
-        font-size: 1.25rem;
-        color: #111827;
-        text-decoration: none;
-        gap: 0.5rem;
-      }
-      .nav-user {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .user-email {
-        font-size: 0.95rem;
-        color: #374151;
-        font-weight: 500;
-        margin-right: 0.5rem;
-        display: inline-block;
-      }
-      .btn-logout {
-        background: #000;
-        border: none;
-        border-radius: 8px;
-        padding: 0.5rem 1rem;
-        color: #fff;
-        font-size: 0.95rem;
-        cursor: pointer;
-      }
-
-      .chat-layout {
-        display: flex;
-        height: 100vh;
-        padding-top: 64px;
-      }
-      .chat-sidebar {
-        width: 260px;
-        background: #fff;
-        border-right: 1px solid #fff;
-        padding: 1.5rem 1rem 1rem 2rem;
-        min-width: 180px;
-        max-width: 320px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-      }
-      .sidebar-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        color: #111827;
-      }
-      .scan-list {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .sidebar-description {
-        font-size: 0.9rem;
-        color: #fff;
-        margin-bottom: 1rem;
-        background-color: #202020;
-        padding: 1rem;
-        border-radius: 12px;
-      }
-      .chat-main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: #f9fafb;
-        position: relative;
-        min-width: 0;
-        border-right: 2px solid #e5e7eb;
-        overflow-y: auto;
-      }
-      .chat-messages {
-        width: 100%;
-        max-width: 700px;
-        flex: 1;
-        overflow-y: auto;
-        padding: 2rem 1rem 12rem 1rem;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-      }
-      .message {
-        max-width: 80%;
-        padding: 1rem 1.25rem;
-        border-radius: 12px;
-        font-size: 1rem;
-        line-height: 1.6;
-        background: #fff;
-        color: #111827;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-        align-self: flex-start;
-        position: relative;
-      }
-      .message.user {
-        background: #111827;
-        color: #fff;
-        align-self: flex-end;
-      }
-      .message-content {
-        word-break: break-word;
-      }
-      .message-timestamp {
-        font-size: 0.8em;
-        color: #6b7280;
-        margin-top: 0.5em;
-        text-align: right;
-      }
-      .chat-input-bar {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 200;
-        display: flex;
-        justify-content: center;
-        background: transparent;
-        pointer-events: none;
-        margin-left: 14rem;
-      }
-      .chat-input-inner {
-        background: #fff;
-        border-radius: 16px 16px 0 0;
-        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
-        width: 100%;
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 1rem 1rem 1rem 1.5rem;
-        display: flex;
-        align-items: flex-end;
-        gap: 0.75rem;
-        pointer-events: all;
-      }
-      .chat-input-inner input[type="text"] {
-        flex: 1;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        background: #f9fafb;
-        color: #111827;
-        outline: none;
-        transition: border 0.2s;
-      }
-      .chat-input-inner input[type="text"]:focus {
-        border-color: #000;
-      }
-      .btn-upload,
-      .btn-send,
-      .btn-cancel {
-        background: #f3f4f6;
-        border: none;
-        border-radius: 6px;
-        padding: 0.5rem 0.8rem;
-        color: #374151;
-        font-size: 1.2rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        transition: background 0.2s;
-      }
-      .btn-upload:hover,
-      .btn-cancel:hover {
-        background: #e5e7eb;
-      }
-      .btn-send {
-        background: #111827;
-        color: #fff;
-        font-size: 1.2rem;
-        margin-left: 0.2rem;
-      }
-      .btn-send:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-      .scan-options-panel {
-        position: absolute;
-        bottom: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        padding: 1.2rem 1.5rem 1rem 1.5rem;
-        z-index: 300;
-        min-width: 320px;
-        max-width: 95vw;
-        display: none;
-        flex-direction: column;
-        gap: 1rem;
-        animation: fadeIn 0.2s;
-      }
-      .scan-options-panel.active {
-        display: flex;
-      }
-      .scan-options-panel .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: center;
-        font-size: 0.98rem;
-      }
-      .scan-options-panel label {
-        font-weight: 500;
-        color: #374151;
-      }
-      .scan-options-panel input[type="checkbox"] {
-        margin-right: 0.3em;
-      }
-      .scan-options-panel input[type="text"],
-      .scan-options-panel input[type="number"],
-      .scan-options-panel select {
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        padding: 0.5rem 0.75rem;
-        font-size: 1rem;
-        background: #fff;
-        color: #111827;
-      }
-      .scan-options-panel .btn-cancel {
-        align-self: flex-end;
-        background: #000;
-        color: #fff;
-        margin-top: 0.5rem;
-      }
-      .scan-options-panel .btn-cancel:hover {
-        background: #000;
-      }
-      .image-preview-area {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        background: #f3f4f6;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        margin: 1rem auto 0 auto;
-        max-width: 350px;
-      }
-      .image-preview-area img {
-        width: 50px;
-        height: 50px;
-        border-radius: 6px;
-        object-fit: cover;
-        border: 1px solid #e5e7eb;
-        background: #fff;
-      }
-      .btn-remove-image {
-        background: #000;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.3rem 0.8rem;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .btn-remove-image:hover {
-        background: #000;
-      }
-      .scan-details-form {
-        background: #fafbfc;
-        border-radius: 12px;
-        padding: 1.5rem 1.5rem 1rem 1.5rem;
-        margin: 1.5rem auto 2rem auto;
-        max-width: 700px;
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      }
-      .scan-details-form .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 1.2rem 1.5rem;
-        margin-bottom: 0.2em;
-      }
-      .scan-details-form .form-section-title {
-        min-width: 160px;
-        font-weight: 600;
-        color: #22223b;
-        margin-right: 1.2rem;
-        font-size: 1rem;
-      }
-      .scan-details-form label {
-        font-weight: 500;
-        color: #374151;
-        display: flex;
-        align-items: center;
-        gap: 0.3em;
-        margin-bottom: 0.2em;
-        font-size: 0.98rem;
-      }
-      .scan-details-form input[type="checkbox"] {
-        accent-color: #000;
-        width: 1.1em;
-        height: 1.1em;
-        margin-right: 0.2em;
-        border-radius: 4px;
-        border: 1px solid #e5e7eb;
-        background: #fff;
-        cursor: pointer;
-      }
-      .scan-details-form input[type="number"],
-      .scan-details-form select {
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        padding: 0.5rem 0.75rem;
-        font-size: 1rem;
-        background: #fff;
-        color: #111827;
-        margin-right: 0.5em;
-        min-width: 120px;
-      }
-      .scan-details-form textarea {
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        padding: 0.7rem 1rem;
-        font-size: 1rem;
-        background: #fff;
-        color: #111827;
-        width: 100%;
-        resize: vertical;
-        min-height: 60px;
-        margin-top: 0.5em;
-      }
-      .scan-details-form .btn-primary {
-        background: #111827;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.7rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-top: 0.7em;
-        align-self: flex-start;
-        cursor: pointer;
-        transition: background 0.2s;
-        width: 100%;
-        margin-bottom: 2.5rem;
-      }
-
-      .image-preview-area.hidden,
-      .scan-details-form.hidden {
-        display: none !important;
-      }
-      @media (max-width: 900px) {
-        .chat-layout {
-          flex-direction: column;
-        }
-        .chat-sidebar {
-          width: 100%;
-          max-width: none;
-          min-width: 0;
-          border-right: none;
-          border-bottom: 1px solid #e5e7eb;
-          flex-direction: row;
-        }
-        .chat-main {
-          min-width: 0;
-        }
-        .chat-input-bar {
-          margin-left: 0rem;
-        }
-      }
-      @media (max-width: 700px) {
-        .chat-sidebar {
-          display: none;
-        }
-        .chat-messages {
-          padding: 1rem 0.2rem 7rem 0.2rem;
-        }
-        .chat-input-inner {
-          max-width: 99vw;
-          border-radius: 0;
-        }
-        .scan-options-panel {
-          min-width: 90vw;
-        }
-      }
-      @media (max-width: 500px) {
-        .navbar {
-          padding: 0 0.5rem;
-        }
-        .chat-input-inner {
-          padding: 0.5rem 0.2rem 0.5rem 0.5rem;
-        }
-        .scan-options-panel {
-          padding: 0.7rem 0.2rem 0.5rem 0.2rem;
-        }
-      }
-      @media (max-width: 800px) {
-        .chat-input-inner {
-          max-width: 98vw;
-          border-radius: 0;
-          padding: 0.7rem 0.3rem;
-        }
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px) translateX(-50%);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) translateX(-50%);
-        }
-      }
-      #submitScanDetails {
-        margin-top: 1.2em;
-        width: 100%;
-      }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
   </head>
   <body>
+    <!-- Top Navbar -->
     <nav class="navbar">
-      <a href="index.html" class="logo">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="logo-icon"
+          >
+            <path d="M4 7v-1a2 2 0 0 1 2 -2h2" />
+            <path d="M4 17v1a2 2 0 0 0 2 2h2" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v1" />
+            <path d="M16 20h2a2 2 0 0 0 2 -2v-1" />
+            <path d="M5 12l14 0" />
+          </svg>
+          AcuScan.
+        </a>
+
+        <div class="nav-user">
+          <img
+            id="userAvatar"
+            class="user-avatar"
+            src="images/avatar-1.jpg"
+            alt="User Avatar"
+          />
+          <div id="userDropdown" class="user-dropdown">
+            <span id="userEmail" class="user-email"></span>
+            <button id="logoutBtn" class="btn-logout">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Chat Layout -->
+    <div class="container">
+      <div class="chat-layout">
+        <!-- Sidebar -->
+        <aside class="chat-sidebar" id="chatSidebar">
+          <div class="sidebar-header">
+            <h2>Chat History</h2>
+            <button id="newChatBtn" class="btn-new-chat">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-message-circle-plus"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12.007 19.98a9.869 9.869 0 0 1 -4.307 -.98l-4.7 1l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c1.992 1.7 2.93 4.04 2.747 6.34"
+                />
+                <path d="M16 19h6" />
+                <path d="M19 16v6" />
+              </svg>
+            </button>
+          </div>
+          <div class="chat-history" id="chatHistory">
+            <!-- Chat history items will be populated here -->
+          </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+          <div class="chat-messages" id="chatMessages">
+            <!-- Welcome message -->
+            <div class="message bot-message">
+              <md>
+                <div class="message-content">
+                  <h3>Welcome to MedAI Chat! 👋</h3>
+                  <p>
+                    I'm here to help you with medical-related queries. You can
+                    ask me about:
+                  </p>
+                  <ul>
+                    <li>Medical image analysis and interpretation</li>
+                    <li>Health symptoms and conditions</li>
+                    <li>Medical terminology explanations</li>
+                    <li>General health advice</li>
+                  </ul>
+                  <p>
+                    Start by typing your question below or upload a medical
+                    image for analysis.
+                  </p>
+                </div>
+              </md>
+              <div class="message-timestamp" id="welcomeTimestamp"></div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+              <input
+                type="text"
+                id="messageInput"
+                placeholder="Type your medical question..."
+                autocomplete="off"
+              />
+              <div class="input-buttons">
+                <button
+                  type="button"
+                  id="uploadBtn"
+                  class="btn-upload"
+                  title="Upload Image"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-photo-scan"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M15 8h.01" />
+                    <path
+                      d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644"
+                    />
+                    <path
+                      d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644"
+                    />
+                    <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+                    <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+                    <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+                    <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+                  </svg>
+                </button>
+                <button type="button" id="sendBtn" class="btn-send" disabled>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22,2 15,22 11,13 2,9 22,2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden file input -->
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            style="display: none"
+          />
+        </main>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button id="sidebarToggle" class="sidebar-toggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none">
+      <div class="loading-spinner">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="40"
+          height="40"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="logo-icon"
         >
-          <path d="M4 7v-1a2 2 0 0 1 2 -2h2" />
-          <path d="M4 17v1a2 2 0 0 0 2 2h2" />
-          <path d="M16 4h2a2 2 0 0 1 2 2v1" />
-          <path d="M16 20h2a2 2 0 0 0 2 -2v-1" />
-          <path d="M5 12l14 0" />
+          <path d="M21 12a9 9 0 11-6.219-8.56" />
         </svg>
-        AcuScan.
-      </a>
-      <div class="nav-user">
-        <span id="userName" class="user-email"></span>
-        <button id="logoutBtn" class="btn-logout">Logout</button>
-      </div>
-    </nav>
-
-    <div class="chat-layout">
-      <aside class="chat-sidebar">
-        <h2 class="sidebar-title">Chat History</h2>
-        <p class="sidebar-description">
-          Currently, no messages will be stored, and reloading the page will
-          automatically delete the chat history.
-          <br />
-          <br />
-
-          Message storage functionality will remain unavailable unless you
-          purchase the premium version.
-
-          <br />
-          <br />
-          This feature is intended for educational purposes only.
-        </p>
-        <div id="scanList" class="scan-list"></div>
-      </aside>
-
-      <main class="chat-main">
-        <div class="chat-messages" id="chatMessages"></div>
-
-        <div id="imagePreviewArea" class="image-preview-area hidden">
-          <img id="uploadedImage" alt="Uploaded scan preview" />
-          <button type="button" id="removeImage" class="btn-remove-image">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-circle-letter-x"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-              <path d="M10 8l4 8" />
-              <path d="M10 16l4 -8" />
-            </svg>
-          </button>
-        </div>
-
-        <form
-          id="scanDetailsForm"
-          class="scan-details-form hidden"
-          autocomplete="off"
-        >
-          <div class="form-row">
-            <span class="form-section-title">Type of Scan</span>
-            <label
-              ><input type="checkbox" name="scanType" value="CT Scan" /> CT
-              Scan</label
-            >
-            <label
-              ><input type="checkbox" name="scanType" value="MRI" /> MRI</label
-            >
-            <label
-              ><input type="checkbox" name="scanType" value="X-ray" />
-              X-ray</label
-            >
-            <label
-              ><input type="checkbox" name="scanType" value="Ultrasound" />
-              Ultrasound</label
-            >
-            <label
-              ><input type="checkbox" name="scanType" value="PET Scan" /> PET
-              Scan</label
-            >
-          </div>
-          <div class="form-row">
-            <span class="form-section-title">Body Part Scanned</span>
-            <label
-              ><input type="checkbox" name="bodyPart" value="Brain" />
-              Brain</label
-            >
-            <label
-              ><input type="checkbox" name="bodyPart" value="Chest" />
-              Chest</label
-            >
-            <label
-              ><input type="checkbox" name="bodyPart" value="Abdomen" />
-              Abdomen</label
-            >
-            <label
-              ><input type="checkbox" name="bodyPart" value="Spine" />
-              Spine</label
-            >
-            <label
-              ><input type="checkbox" name="bodyPart" value="Knee" />
-              Knee</label
-            >
-          </div>
-          <div class="form-row">
-            <span class="form-section-title">Reason for Scan</span>
-            <label
-              ><input
-                type="checkbox"
-                name="reason"
-                value="Suspected Fracture"
-              />
-              Suspected Fracture</label
-            >
-            <label
-              ><input type="checkbox" name="reason" value="Abdominal Pain" />
-              Abdominal Pain</label
-            >
-            <label
-              ><input type="checkbox" name="reason" value="Headache" />
-              Headache</label
-            >
-            <label
-              ><input
-                type="checkbox"
-                name="reason"
-                value="Follow-up for Cancer"
-              />
-              Follow-up for Cancer</label
-            >
-          </div>
-          <div class="form-row">
-            <span class="form-section-title">Patient Information</span>
-            <input
-              type="number"
-              id="patientAge"
-              min="0"
-              max="120"
-              placeholder="Age"
-            />
-            <select id="patientSex">
-              <option value="">Select Sex</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <span class="form-section-title">Medical History</span>
-            <textarea
-              id="medicalHistory"
-              rows="3"
-              placeholder="Enter relevant medical history..."
-            ></textarea>
-          </div>
-          <button type="button" id="submitScanDetails" class="btn-primary">
-            Submit Scan Details
-          </button>
-        </form>
-      </main>
-    </div>
-
-    <div class="chat-input-bar">
-      <form class="chat-input-inner" id="chatForm" autocomplete="off">
-        <input
-          type="text"
-          id="chatInput"
-          placeholder="Type something..."
-          autocomplete="off"
-        />
-        <input
-          type="file"
-          id="scanUpload"
-          accept="image/*"
-          style="display: none"
-        />
-        <button
-          type="button"
-          class="btn-upload"
-          id="imageBtn"
-          title="Upload Image"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-        </button>
-        <button type="submit" class="btn-send" id="sendMessage" disabled>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
-        </button>
-      </form>
-      <div class="scan-options-panel" id="scanOptionsPanel">
-        <div class="form-row">
-          <label>Scan Type:</label>
-          <label
-            ><input type="checkbox" name="scanType" value="MRI" /> MRI</label
-          >
-          <label><input type="checkbox" name="scanType" value="CT" /> CT</label>
-          <label
-            ><input type="checkbox" name="scanType" value="X-ray" />
-            X-ray</label
-          >
-          <label
-            ><input type="checkbox" name="scanType" value="Ultrasound" />
-            Ultrasound</label
-          >
-        </div>
-        <div class="form-row">
-          <label>Body Part:</label>
-          <label
-            ><input type="checkbox" name="bodyPart" value="Head" /> Head</label
-          >
-          <label
-            ><input type="checkbox" name="bodyPart" value="Chest" />
-            Chest</label
-          >
-          <label
-            ><input type="checkbox" name="bodyPart" value="Abdomen" />
-            Abdomen</label
-          >
-          <label
-            ><input type="checkbox" name="bodyPart" value="Spine" />
-            Spine</label
-          >
-        </div>
-        <div class="form-row">
-          <label>Reason:</label>
-          <label
-            ><input type="checkbox" name="reason" value="Diagnosis" />
-            Diagnosis</label
-          >
-          <label
-            ><input type="checkbox" name="reason" value="Follow-up" />
-            Follow-up</label
-          >
-          <label
-            ><input type="checkbox" name="reason" value="Screening" />
-            Screening</label
-          >
-        </div>
-        <div class="form-row">
-          <label for="patientAge">Age:</label>
-          <input type="number" id="patientAge" min="0" max="120" />
-          <label for="patientSex">Sex:</label>
-          <select id="patientSex">
-            <option value="">Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="medicalHistory">Medical History:</label>
-          <input
-            type="text"
-            id="medicalHistory"
-            placeholder="e.g. diabetes, hypertension"
-          />
-        </div>
-        <button type="button" class="btn-cancel" id="cancelScanOptions">
-          Cancel
-        </button>
       </div>
     </div>
+
+    <script>
+      const userAvatar = document.getElementById("userAvatar");
+      const userDropdown = document.getElementById("userDropdown");
+      const userEmail = document.getElementById("userEmail");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      // Set user email and avatar (if you have avatar URL in user metadata)
+      document.addEventListener("DOMContentLoaded", () => {
+        // Set email
+        if (currentUser && currentUser.email) {
+          userEmail.textContent = currentUser.email;
+        }
+        // Set avatar if available
+        // userAvatar.src = currentUser.user_metadata.avatar_url || "images/avatar-1.jpg";
+      });
+
+      userAvatar.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userDropdown.style.display =
+          userDropdown.style.display === "block" ? "none" : "block";
+      });
+
+      // Hide dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!userDropdown.contains(e.target) && e.target !== userAvatar) {
+          userDropdown.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
